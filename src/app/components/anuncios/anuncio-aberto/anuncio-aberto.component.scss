@@ -1,0 +1,42 @@
+.card-livro-aberto {
+  width: 50%;
+  margin: 3% auto;
+  padding: 2.5%;
+  display: flex;
+  flex-direction: column;
+
+  mat-card-header {
+    text-align: center;
+    align-self: center;
+  }
+
+  mat-card-title {
+    font-size: 1.3rem;
+  }
+
+  img {
+    align-self: center;
+    box-shadow: 0 0 6px #7c7c7c;
+    border-radius: 4px;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  p {
+    font-weight: 300;
+  }
+
+  button {
+    width: 90%;
+    margin: 2% auto;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card-livro-aberto {
+    width: 90%;
+  }
+}
