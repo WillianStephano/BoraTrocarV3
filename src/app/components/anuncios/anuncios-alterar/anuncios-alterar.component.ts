@@ -16,7 +16,7 @@ interface Condicao {
 })
 export class AnunciosAlterarComponent {
   aleteraAnunciosFormulario: FormGroup = new FormGroup({});
-  idN: number = 0; // Declare idN as a class property
+  idN: number = 0;
 
   condicoes: Condicao[] = [
     { value: 'novo', valorVisualizado: 'Novo' },
@@ -43,7 +43,7 @@ export class AnunciosAlterarComponent {
     });
 
     var id = this.route.snapshot.paramMap.get('idLivro');
-    this.idN = Number(id); // Assign the value to idN property
+    this.idN = Number(id);
     this.insereNoForm(this.idN);
   }
 

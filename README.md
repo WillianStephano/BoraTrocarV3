@@ -1,4 +1,4 @@
-# BoraTrocarV2
+# BoraTrocarV3
 
 Esse projeto foi iniciado utilizando o [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5 e durante o desenvolvimento foi atualizado para versão 16.0.1
 ### Clonando o projeto

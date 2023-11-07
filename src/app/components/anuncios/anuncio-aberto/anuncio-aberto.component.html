@@ -16,12 +16,7 @@
     <p><strong>Anunciante:</strong>{{ anuncio.usuario.nomeUsuario }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button
-      (click)="abrirChat()"
-      mat-stroked-button
-      color="primary"
-      mat-button
-    >
+    <button (click)="abrirChat()" mat-stroked-button color="primary" mat-button>
       Chat
     </button>
   </mat-card-actions>
@@ -35,16 +30,18 @@
     <mat-list-item>Cometario 3</mat-list-item>
   </mat-list>
 
-  <mat-form-field>
-    <mat-label>Deixe seu comentario</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-  <button
+  <form action="/submit-form" method="post" [formGroup]="comentarioFormulario">
+    <mat-form-field>
+      <mat-label>Deixe seu comentario</mat-label>
+      <textarea formControlName="comentario" matInput></textarea>
+    </mat-form-field>
+    <button
       mat-raised-button
       color="primary"
       mat-button
+      (click)="realizarComentario()"
     >
       Comentar
     </button>
-
+  </form>
 </mat-card>
