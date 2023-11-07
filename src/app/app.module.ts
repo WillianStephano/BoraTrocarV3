@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
+
 import { LoginModule } from './components/login/login.module';
 import { CadastroUsuarioModule } from './components/cadastroUsuario/cadastroUsuario.module';
 import { PerfilModule } from './components/perfil/perfil.module';
@@ -34,6 +36,7 @@ import { RodapeComponent } from './components/rodape/rodape.component';
     CadastroUsuarioModule,
     PerfilModule,
     MatSelectModule,
+    MatDividerModule,
     ChatModule,
   ],
   providers: [AuthGuard, AnunciosGuard],

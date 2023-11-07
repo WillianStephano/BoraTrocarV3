@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CadastroAnunciosService } from './services/anuncios-cadastro.service';
+import { CadastroAnunciosService } from '../../../services/anuncios-cadastro.service';
 import { Router } from '@angular/router';
 
 interface Condicao {

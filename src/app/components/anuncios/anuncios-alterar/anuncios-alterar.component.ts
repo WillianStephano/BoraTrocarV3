@@ -1,4 +1,4 @@
-import { AnunciosAlterarService } from './services/anuncios-alterar.service';
+import { AnunciosAlterarService } from '../../../services/anuncios-alterar.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AnunciosService } from '../../../services/anuncios.service';

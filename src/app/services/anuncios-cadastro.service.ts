@@ -1,16 +1,16 @@
+import { TokenService } from '../token/token.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TokenService } from '../../../../token/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AnunciosAlterarService {
+export class CadastroAnunciosService {
   private readonly API = `http://localhost:8090`;
-  constructor(private tokenService: TokenService, private http: HttpClient) {}
 
-  altera(
-    idLivro: number,
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
+
+  insere(
     isbn: string,
     nomeLivro: string,
     autor: string,
@@ -22,8 +22,8 @@ export class AnunciosAlterarService {
       Authorization: `${this.tokenService.getToken()}`,
     });
 
-    return this.http.put(
-      this.API + `/livro/alterar/${idLivro}`,
+    return this.http.post(
+      this.API + `/livro/cadastrar`,
       {
         isbn,
         nomeLivro,

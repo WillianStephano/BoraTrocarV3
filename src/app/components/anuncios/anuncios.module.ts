@@ -15,6 +15,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 import { AnuncioAbertoComponent } from './anuncio-aberto/anuncio-aberto.component';
 import { AnunciosAlterarComponent } from './anuncios-alterar/anuncios-alterar.component';
 
@@ -39,6 +42,8 @@ import { AnunciosAlterarComponent } from './anuncios-alterar/anuncios-alterar.co
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatDividerModule,
+    MatListModule,
   ],
 })
 export class AnunciosModule {}
