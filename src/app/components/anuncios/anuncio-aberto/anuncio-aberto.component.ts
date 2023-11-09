@@ -5,7 +5,7 @@ import { AnunciosService } from '../../../services/anuncios.service';
 import { Component, Input } from '@angular/core';
 import { Anuncio } from '../../../models/Anuncio';
 import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs';
+import { of, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Perfil } from 'src/app/models/Perfil';
 
@@ -58,15 +58,21 @@ export class AnuncioAbertoComponent {
 
   realizarComentario() {
     const comentario = this.comentarioFormulario.get('comentario')?.value;
-    var autorComentario: string = '';
 
-    this.perfil$.subscribe((perfil) => {
-      autorComentario = perfil.nickname;
-      this.comentarioService.insere(comentario, autorComentario, this.idN);
-
-      console.log(
-        `id:${this.idN}\ncomentario:${comentario}\nnome:${autorComentario}\n`
-      );
-    });
+    this.perfil$
+      .pipe(
+        switchMap((perfil) => {
+          const autorComentario: string = perfil.nickname;
+          return this.comentarioService.insere(
+            comentario,
+            autorComentario,
+            this.idN
+          );
+        })
+      )
+      .subscribe((response) => {
+        // lógica após inserir o comentário, se necessário
+        console.log(response);
+      });
   }
 }

@@ -7,23 +7,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ComentarioService {
-  private readonly API = `http://localhost:8090`;
+  private readonly API = `http://localhost:8080`;
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  insere(comentario: string, autor: string, idLivro: number) {
-    const headers = new HttpHeaders({
-      Authorization: `${this.tokenService.getToken()}`,
+  insere(comentario: string, idUsuario: string, idPublicacao: number) {
+    return this.http.post(this.API + `/cadastrar`, {
+      idUsuario,
+      idPublicacao,
+      comentario,
     });
-
-    return this.http.post(
-      this.API + `/livro/comentar`,
-      {
-        comentario,
-        autor,
-        idLivro
-      },
-      { headers }
-    );
   }
 }
