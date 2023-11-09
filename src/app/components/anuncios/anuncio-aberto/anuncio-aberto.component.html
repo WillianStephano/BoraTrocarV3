@@ -22,12 +22,11 @@
   </mat-card-actions>
 
   <h3>Comentarios</h3>
-  <mat-list>
-    <mat-list-item>Cometario 1</mat-list-item>
+  <mat-list *ngIf="comentario$ | async as comentario">
+    <mat-list-item *ngFor="let comentario of comentario$ | async">{{
+      comentario.comentario
+    }}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>Cometario 2</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>Cometario 3</mat-list-item>
   </mat-list>
 
   <form action="/submit-form" method="post" [formGroup]="comentarioFormulario">

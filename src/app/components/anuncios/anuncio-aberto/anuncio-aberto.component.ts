@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Perfil } from 'src/app/models/Perfil';
+import { Comentario } from 'src/app/models/Comentario';
 
 export interface MeuObjeto {
   token: string;
@@ -21,6 +22,7 @@ export interface MeuObjeto {
 export class AnuncioAbertoComponent {
   anuncio$: Observable<Anuncio> | null;
   perfil$: Observable<Perfil>;
+  comentario$: Observable<Comentario[]> | null;
   comentarioFormulario: FormGroup = new FormGroup({});
 
   idN: number = 0;
@@ -34,6 +36,8 @@ export class AnuncioAbertoComponent {
     private comentarioService: ComentarioService
   ) {
     this.anuncio$ = null;
+    this.comentario$ = null;
+    //this.comentario$ = comentarioService.listaComentarios(this.idN);
     this.perfil$ = perfilService.listaInfoPerfil();
   }
 
@@ -54,6 +58,7 @@ export class AnuncioAbertoComponent {
 
     var id = this.route.snapshot.paramMap.get('idLivro');
     this.idN = Number(id);
+    this.comentario$ = this.comentarioService.listaComentarios(this.idN);
   }
 
   realizarComentario() {

@@ -1,7 +1,9 @@
+import { pipe, tap } from 'rxjs';
 import { PerfilService } from './perfil.service';
 import { TokenService } from './../token/token.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Comentario } from '../models/Comentario';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +19,11 @@ export class ComentarioService {
       idPublicacao,
       comentario,
     });
+  }
+
+  listaComentarios(id:number) {
+    return this.http
+      .get<Comentario[]>(this.API + `/publicacao/${id}`)
+      .pipe(tap((comentario) => console.log(comentario)));
   }
 }
