@@ -1,3 +1,6 @@
+<section class="barra-pesquisa">
+  <app-barra-pesquisa />
+</section>
 <!-- O ngIf é tipo um If ternario, e caso essa caralha nao puxe as info do observable ele vai rodar o tamplete "carregando" que ta la no final. -->
 <div class="container" *ngIf="anuncios$ | async as anuncios; else carregando">
   <mat-card (click)="abrirAnuncio(anuncio.idLivro)" class="card" *ngFor="let anuncio of anuncios$ | async">

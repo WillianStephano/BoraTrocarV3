@@ -1,0 +1,13 @@
+<mat-form-field class="txt-pesquisa">
+  <mat-label>Pesquise</mat-label>
+  <input matInput type="text" [(ngModel)]="txtPesquisa" />
+  <button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    *ngIf="txtPesquisa"
+    (click)="txtPesquisa = ''"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>

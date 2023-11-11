@@ -17,9 +17,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
 
 import { AnuncioAbertoComponent } from './anuncio-aberto/anuncio-aberto.component';
 import { AnunciosAlterarComponent } from './anuncios-alterar/anuncios-alterar.component';
+import { BarraPesquisaComponent } from './barra-pesquisa/barra-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { AnunciosAlterarComponent } from './anuncios-alterar/anuncios-alterar.co
     AnunciosCadastroComponent,
     AnuncioAbertoComponent,
     AnunciosAlterarComponent,
+    BarraPesquisaComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,7 @@ import { AnunciosAlterarComponent } from './anuncios-alterar/anuncios-alterar.co
     MatSelectModule,
     MatDividerModule,
     MatListModule,
+    FormsModule,
   ],
 })
 export class AnunciosModule {}
