@@ -68,6 +68,7 @@ export class AnuncioAbertoComponent {
       .pipe(
         switchMap((perfil) => {
           const autorComentario: string = perfil.nickname;
+
           return this.comentarioService.insere(
             comentario,
             autorComentario,
@@ -75,9 +76,8 @@ export class AnuncioAbertoComponent {
           );
         })
       )
-      .subscribe((response) => {
-        // lógica após inserir o comentário, se necessário
-        console.log(response);
+      .subscribe(() => {
+        location.reload();
       });
   }
 }

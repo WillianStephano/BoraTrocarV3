@@ -21,26 +21,33 @@
     </button>
   </mat-card-actions>
 
-  <h3>Comentarios</h3>
-  <mat-list *ngIf="comentario$ | async as comentario">
-    <mat-list-item *ngFor="let comentario of comentario$ | async">{{
-      comentario.comentario
-    }}</mat-list-item>
-    <mat-divider></mat-divider>
-  </mat-list>
+  <section class="secao-comentarios">
+    <h3>Comentários</h3>
+    <mat-list *ngIf="comentario$ | async as comentarios">
+      <mat-list-item class="comentario" *ngFor="let comentario of comentarios">
+        <p><strong>Autor:</strong>{{ comentario.idUsuario }}</p>
+        <p>{{ comentario.comentario }}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
 
-  <form action="/submit-form" method="post" [formGroup]="comentarioFormulario">
-    <mat-form-field>
-      <mat-label>Deixe seu comentario</mat-label>
-      <textarea formControlName="comentario" matInput></textarea>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="primary"
-      mat-button
-      (click)="realizarComentario()"
+    <form class="form-comentario"
+      action="/submit-form"
+      method="post"
+      [formGroup]="comentarioFormulario"
     >
-      Comentar
-    </button>
-  </form>
+      <mat-form-field class="input-comentario">
+        <mat-label>Deixe seu comentario</mat-label>
+        <textarea formControlName="comentario" matInput></textarea>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        mat-button
+        (click)="realizarComentario()"
+      >
+        Comentar
+      </button>
+    </form>
+  </section>
 </mat-card>
