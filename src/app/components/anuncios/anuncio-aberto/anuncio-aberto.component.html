@@ -25,7 +25,7 @@
     <h3>Comentários</h3>
     <mat-list *ngIf="comentario$ | async as comentarios">
       <mat-list-item class="comentario" *ngFor="let comentario of comentarios">
-        <p><strong>Autor:</strong>{{ comentario.idUsuario }}</p>
+        <p><strong>{{ comentario.idUsuario }}</strong></p>
         <p>{{ comentario.comentario }}</p>
       </mat-list-item>
       <mat-divider></mat-divider>

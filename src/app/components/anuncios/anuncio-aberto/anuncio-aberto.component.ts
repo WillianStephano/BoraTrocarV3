@@ -9,6 +9,7 @@ import { of, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Perfil } from 'src/app/models/Perfil';
 import { Comentario } from 'src/app/models/Comentario';
+import { LoginService } from 'src/app/services/login.service';
 
 export interface MeuObjeto {
   token: string;
@@ -33,7 +34,8 @@ export class AnuncioAbertoComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private perfilService: PerfilService,
-    private comentarioService: ComentarioService
+    private comentarioService: ComentarioService,
+    private loginService: LoginService
   ) {
     this.anuncio$ = null;
     this.comentario$ = null;
@@ -62,22 +64,27 @@ export class AnuncioAbertoComponent {
   }
 
   realizarComentario() {
-    const comentario = this.comentarioFormulario.get('comentario')?.value;
+    if (this.loginService.estaAutenticado() === true) {
+      const comentario = this.comentarioFormulario.get('comentario')?.value;
 
-    this.perfil$
-      .pipe(
-        switchMap((perfil) => {
-          const autorComentario: string = perfil.nickname;
+      this.perfil$
+        .pipe(
+          switchMap((perfil) => {
+            const autorComentario: string = perfil.nickname;
 
-          return this.comentarioService.insere(
-            comentario,
-            autorComentario,
-            this.idN
-          );
-        })
-      )
-      .subscribe(() => {
-        location.reload();
-      });
+            return this.comentarioService.insere(
+              comentario,
+              autorComentario,
+              this.idN
+            );
+          })
+        )
+        .subscribe(() => {
+          location.reload();
+        });
+    } else {
+      this.router.navigateByUrl('/login');
+      alert('É necessario realizar login para realizar um comentario.');
+    }
   }
 }
