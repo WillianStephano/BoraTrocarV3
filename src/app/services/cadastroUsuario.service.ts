@@ -14,14 +14,20 @@ export class CadastroUsuarioService {
     email: string,
     nickname: string,
     senha: string,
-    dataNascimento: string
+    dataNascimento: string,
+    accessToken: string
   ) {
-    return this.http.post(this.API + `/usuario/cadastrar`, {
+    // Prepare user data to send to backend
+    const userData = {
       nomeUsuario,
       email,
       nickname,
       senha,
       dataNascimento,
-    });
+      accessToken, // Include access token for backend verification
+    };
+
+    // Make a POST request to the backend endpoint for user registration
+    return this.http.post(this.API + `/usuario/cadastrar`, userData);
   }
 }
