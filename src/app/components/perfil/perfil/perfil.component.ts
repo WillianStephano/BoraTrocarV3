@@ -5,6 +5,7 @@ import { LoginService } from '../../../services/login.service';
 import { PerfilService } from '../../../services/perfil.service';
 import { Router } from '@angular/router';
 import { AnunciosService } from '../../../services/anuncios.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-perfil',
@@ -18,9 +19,11 @@ export class PerfilComponent {
     private perfilService: PerfilService,
     public loginService: LoginService,
     private router: Router,
-    private anunciosService: AnunciosService
+    private anunciosService: AnunciosService,
+    private meta: Meta
   ) {
     this.perfil$ = this.perfilService.listaInfoPerfil();
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
   }
 
   deletaAnuncio(idLivro: number) {

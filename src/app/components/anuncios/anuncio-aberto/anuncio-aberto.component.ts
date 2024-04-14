@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Perfil } from 'src/app/models/Perfil';
 import { Comentario } from 'src/app/models/Comentario';
 import { LoginService } from 'src/app/services/login.service';
+import { Meta } from '@angular/platform-browser';
 
 export interface MeuObjeto {
   token: string;
@@ -35,8 +36,10 @@ export class AnuncioAbertoComponent {
     private formBuilder: FormBuilder,
     private perfilService: PerfilService,
     private comentarioService: ComentarioService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private meta: Meta
   ) {
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
     this.anuncio$ = null;
     this.comentario$ = null;
     //this.comentario$ = comentarioService.listaComentarios(this.idN);

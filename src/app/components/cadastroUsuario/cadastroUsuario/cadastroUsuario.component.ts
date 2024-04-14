@@ -1,6 +1,7 @@
 import { CadastroUsuarioService } from '../../../services/cadastroUsuario.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +15,11 @@ export class CadastroUsuarioComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private CadastroUsuarioService: CadastroUsuarioService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private meta: Meta
+  ) {
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
+  }
 
   ngOnInit(): void {
     this.cadastroUsuarioFormulario = this.formBuilder.group({

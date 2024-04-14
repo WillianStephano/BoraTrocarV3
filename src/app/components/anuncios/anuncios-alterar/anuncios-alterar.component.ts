@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AnunciosService } from '../../../services/anuncios.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 interface Condicao {
   value: string;
@@ -29,8 +30,11 @@ export class AnunciosAlterarComponent {
     private anunciosService: AnunciosService,
     private route: ActivatedRoute,
     private router: Router,
-    private anunciosAlterarService: AnunciosAlterarService
-  ) {}
+    private anunciosAlterarService: AnunciosAlterarService,
+    private meta: Meta
+  ) {
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
+  }
 
   ngOnInit(): void {
     this.aleteraAnunciosFormulario = this.formBuilder.group({

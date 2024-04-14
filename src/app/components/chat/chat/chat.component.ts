@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LoginService } from '../../../services/login.service';
+import { Meta } from '@angular/platform-browser';
 
 interface Mensagem {
   usuario: string;
@@ -17,7 +18,9 @@ export class ChatComponent {
   mensagens: Mensagem[] = [];
   formularioMensagem: FormGroup;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private meta: Meta) {
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
+
     this.formularioMensagem = new FormGroup({
       messageControl: new FormControl(''),
     });

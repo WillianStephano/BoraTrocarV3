@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CadastroAnunciosService } from '../../../services/anuncios-cadastro.service';
 import { Router } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 interface Condicao {
   value: string;
@@ -26,8 +27,9 @@ export class AnunciosCadastroComponent {
   constructor(
     private formBuilder: FormBuilder,
     private cadastroAnunciosService: CadastroAnunciosService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private meta: Meta
+  ) {this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });}
 
   ngOnInit(): void {
     this.cadastroAnunciosFormulario = this.formBuilder.group({
