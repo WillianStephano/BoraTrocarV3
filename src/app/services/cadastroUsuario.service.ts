@@ -18,7 +18,10 @@ export class CadastroUsuarioService {
     email: string,
     nickname: string,
     senha: string,
-    dataNascimento: string
+    dataNascimento: string,
+    cep: string,
+    cidade: string,
+    uf: string
   ) {
     return this.http.post(this.API + `/usuario/cadastrar`, {
       nomeUsuario,
@@ -26,6 +29,9 @@ export class CadastroUsuarioService {
       nickname,
       senha,
       dataNascimento,
+      cep,
+      cidade,
+      uf,
     });
   }
 

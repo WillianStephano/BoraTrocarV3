@@ -50,17 +50,16 @@
         3 a 20 caracteres
       </small>
     </mat-form-field>
-
     <mat-form-field appearance="fill" class="form-cadastro-usuario">
       <mat-label>CEP</mat-label>
       <input matInput type="text" formControlName="cep" (input)="testaCep()" />
+      <small *ngIf="cadastroUsuarioFormulario.get('cep')?.errors?.['pattern']">
+        Somente números são permitidos.
+      </small>
       <small
-        *ngIf="
-          cadastroUsuarioFormulario.get('cep')?.touched &&
-          cadastroUsuarioFormulario.get('cep')?.value
-        "
+        *ngIf="cadastroUsuarioFormulario.get('cep')?.errors?.['maxLength']"
       >
-        8 caracteres
+        Máximo de 8 caracteres.
       </small>
     </mat-form-field>
 
@@ -71,6 +70,18 @@
         *ngIf="
           cadastroUsuarioFormulario.get('cidade')?.touched &&
           cadastroUsuarioFormulario.get('cidade')?.value
+        "
+      >
+      </small>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-cadastro-usuario">
+      <mat-label>UF</mat-label>
+      <input matInput type="text" formControlName="uf" />
+      <small
+        *ngIf="
+          cadastroUsuarioFormulario.get('uf')?.touched &&
+          cadastroUsuarioFormulario.get('uf')?.value
         "
       >
       </small>

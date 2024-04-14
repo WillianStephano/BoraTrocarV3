@@ -1,5 +1,5 @@
 import { CadastroUsuarioService } from '../../../services/cadastroUsuario.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './cadastroUsuario.component.html',
   styleUrls: ['./cadastroUsuario.component.scss'],
 })
-export class CadastroUsuarioComponent {
+export class CadastroUsuarioComponent implements OnInit {
   cadastroUsuarioFormulario: FormGroup = new FormGroup({});
 
   constructor(
@@ -19,7 +19,6 @@ export class CadastroUsuarioComponent {
 
   ngOnInit(): void {
     this.cadastroUsuarioFormulario = this.formBuilder.group({
-      //aqui eu controlo o form de cadastro, o primeiro parametro do array é o valor padrao do form.
       nomeUsuario: [
         '',
         [
@@ -40,8 +39,17 @@ export class CadastroUsuarioComponent {
           Validators.maxLength(20),
         ],
       ],
-      cep: ['', [Validators.minLength(3), Validators.maxLength(8)]],
-      cidade: ['', [Validators.minLength(3), Validators.maxLength(8)]],
+      cep: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(8),
+          Validators.pattern('^[0-9]*$'),
+        ],
+      ],
+      cidade: ['', [Validators.minLength(3), Validators.maxLength(50)]],
+      uf: ['', [Validators.maxLength(2)]],
       senha: [
         '',
         [
@@ -68,13 +76,17 @@ export class CadastroUsuarioComponent {
       this.cadastroUsuarioFormulario.get('dataNascimento')?.value;
     const cep = this.cadastroUsuarioFormulario.get('cep')?.value;
     const cidade = this.cadastroUsuarioFormulario.get('cidade')?.value;
+    const uf = this.cadastroUsuarioFormulario.get('uf')?.value;
 
     this.CadastroUsuarioService.insereNoBanco(
       nomeUsuario,
       email,
       nickname,
       senha,
-      dataNascimento
+      dataNascimento,
+      cep,
+      cidade,
+      uf
     ).subscribe(() => {
       alert('Cadastro efetuado com sucesso');
       this.router.navigateByUrl('/login');
@@ -83,33 +95,17 @@ export class CadastroUsuarioComponent {
 
   testaCep() {
     const cep = this.cadastroUsuarioFormulario.get('cep')?.value;
-    console.log('CEP digitado:', cep);
-    this.CadastroUsuarioService.verificaCEP(cep).subscribe((resposta) => {
-      console.log('Resposta da verificação do CEP:', resposta);
-      this.cadastroUsuarioFormulario.patchValue({
-        cidade: resposta.localidade,
+    if (cep.length === 8) {
+      this.CadastroUsuarioService.verificaCEP(cep).subscribe((resposta) => {
+        this.cadastroUsuarioFormulario.patchValue({
+          cidade: resposta.localidade,
+          uf: resposta.uf,
+        });
       });
-    });
+    }
   }
 
   limpar() {
     this.cadastroUsuarioFormulario.reset();
   }
-
-  /* validaDataNascimento(): Validators {
-    return (cadastroUsuarioFormulario: FormGroup) => {
-      const dataAtual = new Date();
-      const anoAtual = dataAtual.getFullYear();
-      console.log(anoAtual);
-
-      const dataDoForm = cadastroUsuarioFormulario.get('dataNascimento')?.value;
-      console.log(dataDoForm);
-
-      if (dataDoForm >= anoAtual) {
-        return { dataMaxima: true };
-      }
-
-      return null;
-    };
-  } */
 }
