@@ -4,6 +4,7 @@ import { Component, HostListener, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-anuncios',
@@ -17,9 +18,11 @@ export class AnunciosComponent {
     private anunciosService: AnunciosService,
     public loginService: LoginService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private meta: Meta
   ) {
     this.anuncios$ = this.anunciosService.listaTudo();
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
   }
 
   criaUmAnuncio() {

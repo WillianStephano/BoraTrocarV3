@@ -1,6 +1,7 @@
 import { LoginService } from '../../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,8 +17,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private LoginService: LoginService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private meta: Meta
+  ) {
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
+  }
 
   ngOnInit(): void {
     this.loginFormulario = this.formBuilder.group({

@@ -40,6 +40,8 @@ export class CadastroUsuarioComponent {
           Validators.maxLength(20),
         ],
       ],
+      cep: ['', [Validators.minLength(3), Validators.maxLength(8)]],
+      cidade: ['', [Validators.minLength(3), Validators.maxLength(8)]],
       senha: [
         '',
         [
@@ -57,11 +59,15 @@ export class CadastroUsuarioComponent {
   }
 
   cadastrarUsuario() {
-    const nomeUsuario = this.cadastroUsuarioFormulario.get('nomeUsuario')?.value;
+    const nomeUsuario =
+      this.cadastroUsuarioFormulario.get('nomeUsuario')?.value;
     const email = this.cadastroUsuarioFormulario.get('email')?.value;
     const nickname = this.cadastroUsuarioFormulario.get('nickname')?.value;
     const senha = this.cadastroUsuarioFormulario.get('senha')?.value;
-    const dataNascimento = this.cadastroUsuarioFormulario.get('dataNascimento')?.value;
+    const dataNascimento =
+      this.cadastroUsuarioFormulario.get('dataNascimento')?.value;
+    const cep = this.cadastroUsuarioFormulario.get('cep')?.value;
+    const cidade = this.cadastroUsuarioFormulario.get('cidade')?.value;
 
     this.CadastroUsuarioService.insereNoBanco(
       nomeUsuario,
@@ -72,6 +78,17 @@ export class CadastroUsuarioComponent {
     ).subscribe(() => {
       alert('Cadastro efetuado com sucesso');
       this.router.navigateByUrl('/login');
+    });
+  }
+
+  testaCep() {
+    const cep = this.cadastroUsuarioFormulario.get('cep')?.value;
+    console.log('CEP digitado:', cep);
+    this.CadastroUsuarioService.verificaCEP(cep).subscribe((resposta) => {
+      console.log('Resposta da verificação do CEP:', resposta);
+      this.cadastroUsuarioFormulario.patchValue({
+        cidade: resposta.localidade,
+      });
     });
   }
 

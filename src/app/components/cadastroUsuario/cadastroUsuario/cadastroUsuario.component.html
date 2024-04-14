@@ -1,5 +1,4 @@
 <mat-card class="card-cadastro-usuario">
-
   <h1>Cadastro</h1>
   <form
     action="/submit-form"
@@ -49,6 +48,31 @@
         "
       >
         3 a 20 caracteres
+      </small>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-cadastro-usuario">
+      <mat-label>CEP</mat-label>
+      <input matInput type="text" formControlName="cep" (input)="testaCep()" />
+      <small
+        *ngIf="
+          cadastroUsuarioFormulario.get('cep')?.touched &&
+          cadastroUsuarioFormulario.get('cep')?.value
+        "
+      >
+        8 caracteres
+      </small>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-cadastro-usuario">
+      <mat-label>Cidade</mat-label>
+      <input matInput type="text" formControlName="cidade" />
+      <small
+        *ngIf="
+          cadastroUsuarioFormulario.get('cidade')?.touched &&
+          cadastroUsuarioFormulario.get('cidade')?.value
+        "
+      >
       </small>
     </mat-form-field>
 
