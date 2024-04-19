@@ -7,6 +7,13 @@
     <h1>Cadastre seu livro</h1>
     <img src="https://via.placeholder.com/150" alt="Foto de perfil" />
 
+    <input
+      type="file"
+      formControlName="img"
+      (change)="selecionarImagem($event)"
+      accept="image/*"
+    />
+
     <mat-form-field>
       <mat-label>ISBN</mat-label>
       <input matInput type="text" formControlName="isbn" />
