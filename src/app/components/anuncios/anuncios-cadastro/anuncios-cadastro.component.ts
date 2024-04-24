@@ -65,7 +65,6 @@ export class AnunciosCadastroComponent {
   }
 
   cadastrarAnuncio() {
-    const imgConvertida = this.cadastroAnunciosFormulario.get('img')?.value;
     const isbn = this.cadastroAnunciosFormulario.get('isbn')?.value;
     const nomeLivro = this.cadastroAnunciosFormulario.get('nomeLivro')?.value;
     const autor = this.cadastroAnunciosFormulario.get('autor')?.value;
@@ -75,7 +74,7 @@ export class AnunciosCadastroComponent {
 
     this.cadastroAnunciosService
       .insere(
-        imgConvertida,
+        this.imgConvertida,
         isbn,
         nomeLivro,
         autor,
@@ -87,5 +86,7 @@ export class AnunciosCadastroComponent {
         alert('Livro cadastrado com sucesso');
         this.router.navigateByUrl('/anuncios');
       });
+
+    console.log(this.imgConvertida);
   }
 }

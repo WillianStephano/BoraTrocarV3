@@ -2,6 +2,7 @@ export interface Anuncio {
   idLivro: number;
   isbn: string;
   nomeLivro: string;
+  img: Uint8Array;
   autor: {
     nomeAutor: string;
   };
@@ -15,5 +16,4 @@ export interface Anuncio {
   usuario: {
     nomeUsuario: string;
   };
-  imgLivro: '';
 }

@@ -23,6 +23,8 @@ export class CadastroAnunciosService {
       Authorization: `${this.tokenService.getToken()}`,
     });
 
+    console.log(img);
+    console.log(typeof(img));
     return this.http.post(
       this.API + `/livro/cadastrar`,
       {
@@ -36,5 +38,6 @@ export class CadastroAnunciosService {
       },
       { headers }
     );
+
   }
 }
