@@ -9,11 +9,6 @@
   box-sizing: border-box;
   font-family: "nunito";
 
-  .img-perfil-anunciante {
-    background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
-    background-size: cover;
-  }
-
   .img-livro {
     max-height: 450px;
     margin: 2% auto;
@@ -60,7 +55,7 @@
 
   &:hover {
     cursor: pointer;
-    transform: scale(100.5%);
+    transform: scale(1.005); /* Ajustado para 1.005, sem a unidade '100%', que é redundante */
     transition: 200ms;
   }
 }
@@ -78,32 +73,18 @@ mat-card-actions {
   margin: 2% auto;
   gap: 30px;
   row-gap: 30px;
-}
 
-.carregamento-postagens {
-  display: flex;
-  justify-content: center;
-  margin-top: 10%;
-}
-
-/* deu ruim aqui, to usando css inline la
-.carregamento-postagens mat-spinner{
-  height: 50px;
-}
- */
-
-@media screen and (min-width: 1600px) {
-  .card {
-    width: 17.5%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .container {
+  @media screen and (max-width: 500px) {
     flex-direction: column;
 
     .card {
       max-width: 70%;
     }
   }
+}
+
+.carregamento-postagens {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
 }

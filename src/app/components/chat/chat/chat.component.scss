@@ -3,6 +3,7 @@ h2 {
   font-weight: 500;
   color: #2196f3;
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -36,14 +37,14 @@ mat-card-actions {
   display: flex;
   justify-content: center;
   align-items: center;
-  vertical-align: middle;
   gap: 0;
 
   input {
     height: 27px;
     border: 1px solid rgb(108, 175, 108);
     border-radius: 5px 0px 0px 5px;
-    width: 100%;
+    width: calc(100% - 44px);
+    padding-left: 5px;
   }
 
   button {
@@ -51,10 +52,11 @@ mat-card-actions {
     border: 1px solid rgb(108, 175, 108);
     background-color: transparent;
     border-radius: 0px 5px 5px 0px;
+    width: 44px;
     &:hover {
       cursor: pointer;
       background-color: #d8d8d8;
-      transition: 250ms;
+      transition: background-color 250ms;
     }
 
     mat-icon {

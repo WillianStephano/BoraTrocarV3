@@ -7,12 +7,7 @@ $custom-app-secondary: mat-palette($mat-indigo, A200, A400, 700);
 $custom-app-warn: mat-palette($mat-red);
 
 //Cria o tema
-$custom-theme: mat-light-theme(
-  $custom-app-primary,
-  $custom-app-secondary,
-  $custom-app-warn,
-
-);
+$custom-theme: mat-light-theme($custom-app-primary, $custom-app-secondary, $custom-app-warn);
 //Aplica o tema
 @include angular-material-theme($custom-theme);
 
@@ -20,9 +15,6 @@ html,
 body {
   height: 100%;
   background-color: #eff8ff;
-}
-
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }

@@ -5,8 +5,9 @@
   box-sizing: border-box;
 
   h1 {
-    font-weight: 500;
-    font-size: 1.6rem;
+    font:
+      500 1.6rem/1.5 "lato",
+      sans-serif;
     text-align: center;
     color: #2196f3;
   }
@@ -14,10 +15,10 @@
   form {
     display: flex;
     flex-direction: column;
-  }
 
-  input {
-    width: 100%;
+    input {
+      width: 100%;
+    }
   }
 
   small {
@@ -27,18 +28,17 @@
 
   mat-card-actions {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
 
     button {
       width: 40%;
-      font-weight: 600;
-      font-size: 1rem;
-      font-family: "lato";
+      font:
+        600 1rem "lato",
+        sans-serif;
 
       &:hover {
         background-color: #2196f3;
-        transition: 250ms;
+        transition: background-color 0.25s;
         color: #fff;
       }
     }
