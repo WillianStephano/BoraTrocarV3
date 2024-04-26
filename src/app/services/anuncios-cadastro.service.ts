@@ -19,15 +19,9 @@ export class CadastroAnunciosService {
     descricao: string,
     imagem: File
   ) {
-    const headers = new HttpHeaders({
-      Authorization: `${this.tokenService.getToken()}`,
-    });
-
-    // Criar um objeto FormData apenas para a imagem
     const formData = new FormData();
     formData.append('imagem', imagem);
 
-    // Construir o corpo da requisição com os outros parâmetros
     const body = {
       isbn: isbn,
       nomeLivro: nomeLivro,
@@ -36,6 +30,11 @@ export class CadastroAnunciosService {
       categoria: categoria,
       descricao: descricao,
     };
+
+    const headers = new HttpHeaders({
+      Authorization: `${this.tokenService.getToken()}`,
+    });
+    headers.append('Content-Type', 'multipart/form-data');
 
     return this.http.post(this.API + '/livro/cadastrar', formData, {
       headers,
