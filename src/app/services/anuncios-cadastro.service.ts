@@ -11,7 +11,6 @@ export class CadastroAnunciosService {
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   insere(
-    img: Uint8Array,
     isbn: string,
     nomeLivro: string,
     autor: string,
@@ -28,7 +27,6 @@ export class CadastroAnunciosService {
     return this.http.post(
       this.API + `/livro/cadastrar`,
       {
-        img,
         isbn,
         nomeLivro,
         autor,
