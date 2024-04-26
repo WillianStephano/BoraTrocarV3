@@ -23,22 +23,23 @@ export class CadastroAnunciosService {
       Authorization: `${this.tokenService.getToken()}`,
     });
 
-    // Criar um objeto FormData
+    // Criar um objeto FormData apenas para a imagem
     const formData = new FormData();
-    formData.append('isbn', isbn);
-    formData.append('nomeLivro', nomeLivro);
-    formData.append('autor', autor);
-    formData.append('condicao', condicao);
-    formData.append('categoria', categoria);
-    formData.append('descricao', descricao);
-    formData.append('imagem', imagem); // Adicionar o arquivo ao FormData
+    formData.append('imagem', imagem);
 
-    // Enviar a requisição com FormData
-    return this.http.post(
-      this.API + `/livro/cadastrar`,
-      formData,
-      { headers }
-    );
+    // Construir o corpo da requisição com os outros parâmetros
+    const body = {
+      isbn: isbn,
+      nomeLivro: nomeLivro,
+      autor: autor,
+      condicao: condicao,
+      categoria: categoria,
+      descricao: descricao,
+    };
+
+    return this.http.post(this.API + '/livro/cadastrar', formData, {
+      headers,
+      params: body,
+    });
   }
-
 }
