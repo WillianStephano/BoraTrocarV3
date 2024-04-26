@@ -17,6 +17,7 @@ interface Condicao {
 export class AnunciosCadastroComponent {
   cadastroAnunciosFormulario: FormGroup = new FormGroup({});
   valorSelecionado: string = '';
+  imagem: File | undefined | null;
 
   condicoes: Condicao[] = [
     { value: 'novo', valorVisualizado: 'Novo' },
@@ -29,7 +30,9 @@ export class AnunciosCadastroComponent {
     private cadastroAnunciosService: CadastroAnunciosService,
     private router: Router,
     private meta: Meta
-  ) {this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });}
+  ) {
+    this.meta.addTag({ name: 'description', content: 'Sua descrição aqui' });
+  }
 
   ngOnInit(): void {
     this.cadastroAnunciosFormulario = this.formBuilder.group({
@@ -42,6 +45,14 @@ export class AnunciosCadastroComponent {
     });
   }
 
+  handleImageInput(fileInput: HTMLInputElement) {
+    const file = fileInput.files?.item(0);
+    if (file) {
+      console.log('Arquivo anexado:', file);
+      this.imagem = file;
+    }
+  }
+
   cadastrarAnuncio() {
     const isbn = this.cadastroAnunciosFormulario.get('isbn')?.value;
     const nomeLivro = this.cadastroAnunciosFormulario.get('nomeLivro')?.value;
@@ -49,14 +60,19 @@ export class AnunciosCadastroComponent {
     const condicao = this.cadastroAnunciosFormulario.get('condicao')?.value;
     const categoria = this.cadastroAnunciosFormulario.get('categoria')?.value;
     const descricao = this.cadastroAnunciosFormulario.get('descricao')?.value;
+    const imagem = this.imagem;
 
-    this.cadastroAnunciosService
-      .insere(isbn, nomeLivro, autor, condicao, categoria, descricao)
-      .subscribe(() => {
-        alert('Livro cadastrado com sucesso');
-        this.router.navigateByUrl('/anuncios');
-      });
+    console.log(imagem);
 
-    console.log(this.imgConvertida);
+    //const imagem = this.imagem ?? new File([], 'gambiarra');
+
+    if (imagem) {
+      this.cadastroAnunciosService
+        .insere(isbn, nomeLivro, autor, condicao, categoria, descricao, imagem)
+        .subscribe(() => {
+          alert('Livro cadastrado com sucesso');
+          this.router.navigateByUrl('/anuncios');
+        });
+    }
   }
 }

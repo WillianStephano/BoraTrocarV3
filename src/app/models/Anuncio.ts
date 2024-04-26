@@ -2,7 +2,7 @@ export interface Anuncio {
   idLivro: number;
   isbn: string;
   nomeLivro: string;
-  img: Uint8Array;
+  img: File;
   autor: {
     nomeAutor: string;
   };

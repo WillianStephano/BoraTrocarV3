@@ -58,19 +58,6 @@ export class AnuncioAbertoComponent {
 
     this.anunciosService.pegarAnuncio(idN).subscribe((anuncio) => {
       this.anuncio$ = of(anuncio);
-
-      if (anuncio && anuncio.img) {
-        // Crie um Uint8Array diretamente do array de bytes
-        const arrayBuffer = new Uint8Array(anuncio.img);
-        const nomeArquivo = 'imagem.jpg'; // Nome do arquivo (ajuste conforme necessário)
-        const tipoMIME = 'image/jpeg'; // Tipo MIME da imagem (ajuste conforme necessário)
-
-        this.imgFile = this.converterParaFile(
-          arrayBuffer,
-          nomeArquivo,
-          tipoMIME
-        );
-      }
     });
 
     this.comentarioFormulario = this.formBuilder.group({
@@ -104,23 +91,5 @@ export class AnuncioAbertoComponent {
       this.router.navigateByUrl('/login');
       alert('É necessario realizar login para realizar um comentario.');
     }
-  }
-
-  converterParaFile(
-    array: Uint8Array,
-    nomeArquivo: string,
-    tipoMIME: string
-  ): File {
-    // Crie um Blob a partir do array de bytes
-    const blob = new Blob([array], { type: tipoMIME });
-
-    // Crie um novo objeto File a partir do Blob
-    const file = new File([blob], nomeArquivo);
-    console.log(file)
-    return file;
-  }
-
-  criarObjectURL(file: File): string {
-    return window.URL.createObjectURL(file);
   }
 }
