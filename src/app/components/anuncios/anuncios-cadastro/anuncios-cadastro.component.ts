@@ -45,7 +45,7 @@ export class AnunciosCadastroComponent {
     });
   }
 
-  handleImageInput(fileInput: HTMLInputElement) {
+  selecionaImagem(fileInput: HTMLInputElement) {
     const file = fileInput.files?.item(0);
     if (file) {
       console.log('Arquivo anexado:', file);
