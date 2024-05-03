@@ -2,18 +2,12 @@ export interface Anuncio {
   idLivro: number;
   isbn: string;
   nomeLivro: string;
-  img: File;
+  imagemBlob: Uint8Array;
   autor: {
     nomeAutor: string;
   };
-  categoria: {
-    nomeCategoria: string;
-  };
-  condicao: {
-    nomeCondicao: string;
-  };
+  categoria: string;
+  condicao: string;
   descricao: string;
-  usuario: {
-    nomeUsuario: string;
-  };
+  usuario: string;
 }

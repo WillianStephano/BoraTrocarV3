@@ -17,10 +17,10 @@ export class CadastroAnunciosService {
     condicao: string,
     categoria: string,
     descricao: string,
-    imagem: File
+    imagemFile: File
   ) {
     const formData = new FormData();
-    formData.append('imagem', imagem);
+    formData.append('imagemFile', imagemFile);
 
     const body = {
       isbn: isbn,

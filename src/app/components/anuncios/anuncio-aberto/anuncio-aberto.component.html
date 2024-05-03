@@ -5,16 +5,16 @@
   </mat-card-header>
   <img
     mat-card-image
-    [src]=""
+    [src]="imagemURL"
     alt="Capa do livro"
   />
 
   <mat-card-content>
     <p><strong>ISBN:</strong>{{ anuncio.isbn }}</p>
-    <p><strong>Categoria:</strong>{{ anuncio.categoria.nomeCategoria }}</p>
-    <p><strong>Condição:</strong>{{ anuncio.condicao.nomeCondicao }}</p>
+    <p><strong>Categoria:</strong>{{ anuncio.categoria }}</p>
+    <p><strong>Condição:</strong>{{ anuncio.condicao }}</p>
     <p><strong>Descrição:</strong>{{ anuncio.descricao }}</p>
-    <p><strong>Anunciante:</strong>{{ anuncio.usuario.nomeUsuario }}</p>
+    <p><strong>Anunciante:</strong>{{ anuncio.usuario }}</p>
   </mat-card-content>
   <mat-card-actions>
     <button (click)="abrirChat()" mat-stroked-button color="primary" mat-button>

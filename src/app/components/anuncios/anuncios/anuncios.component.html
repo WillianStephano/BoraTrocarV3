@@ -3,31 +3,32 @@
 </section>
 <!-- O ngIf é tipo um If ternario, e caso essa caralha nao puxe as info do observable ele vai rodar o tamplete "carregando" que ta la no final. -->
 <div class="container" *ngIf="anuncios$ | async as anuncios; else carregando">
-  <mat-card (click)="abrirAnuncio(anuncio.idLivro)" class="card" *ngFor="let anuncio of anuncios$ | async">
+  <mat-card
+    (click)="abrirAnuncio(anuncio.idLivro)"
+    class="card"
+    *ngFor="let anuncio of anuncios$ | async"
+  >
     <mat-card-header style="width: 100%">
       <mat-card-title>{{ anuncio.nomeLivro }}</mat-card-title>
     </mat-card-header>
 
-    <!-- https://via.placeholder.com/450 qualquer coisa usa esse placeholder de img -->
     <div class="img-livro">
       <img
         mat-card-image
-        src="https://placehold.co/450x450?text=Img+Livro"
+        [src]="'data:image/jpeg;base64,' + anuncio.imagemBlob"
         alt="Imagem do livro anunciado"
       />
     </div>
 
     <mat-card-content>
       <p class="autor">Autor: {{ anuncio.autor.nomeAutor }}</p>
-      <p class="genero">Categoria: {{ anuncio.categoria.nomeCategoria }}</p>
+      <p class="genero">Categoria: {{ anuncio.categoria }}</p>
       <p class="isbn">ISBN: {{ anuncio.isbn }}</p>
-      <p class="descricao">
-        <span> Descrição:</span> {{ anuncio.descricao }}
-      </p>
+      <p class="descricao"><span> Descrição:</span> {{ anuncio.descricao }}</p>
       <!-- Img de perfil -->
       <!-- <div mat-card-avatar class="img-perfil-anunciante"></div> -->
       <p class="anunciante">
-        <span> Anunciante:</span> {{ anuncio.usuario.nomeUsuario }}
+        <span> Anunciante:</span> {{ anuncio.usuario }}
       </p>
     </mat-card-content>
   </mat-card>

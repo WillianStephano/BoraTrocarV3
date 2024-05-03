@@ -27,7 +27,7 @@ export class AnuncioAbertoComponent {
   comentario$: Observable<Comentario[]> | null;
   comentarioFormulario: FormGroup = new FormGroup({});
 
-  imgFile: File | null = null;
+  imagemURL: any | null = null;
 
   idN: number = 0;
 
@@ -58,6 +58,11 @@ export class AnuncioAbertoComponent {
 
     this.anunciosService.pegarAnuncio(idN).subscribe((anuncio) => {
       this.anuncio$ = of(anuncio);
+      console.log(anuncio);
+      console.log('Dados brutos da imagem:', anuncio.imagemBlob);
+
+      this.imagemURL = `data:image/jpeg;base64,${anuncio.imagemBlob}`;
+
     });
 
     this.comentarioFormulario = this.formBuilder.group({

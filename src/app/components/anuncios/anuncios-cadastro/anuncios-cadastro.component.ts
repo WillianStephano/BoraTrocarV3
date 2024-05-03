@@ -17,7 +17,7 @@ interface Condicao {
 export class AnunciosCadastroComponent {
   cadastroAnunciosFormulario: FormGroup = new FormGroup({});
   valorSelecionado: string = '';
-  imagem: File | undefined | null;
+  imagemFile: File | undefined | null;
 
   condicoes: Condicao[] = [
     { value: 'novo', valorVisualizado: 'Novo' },
@@ -49,7 +49,7 @@ export class AnunciosCadastroComponent {
     const file = fileInput.files?.item(0);
     if (file) {
       console.log('Arquivo anexado:', file);
-      this.imagem = file;
+      this.imagemFile = file;
     }
   }
 
@@ -60,15 +60,15 @@ export class AnunciosCadastroComponent {
     const condicao = this.cadastroAnunciosFormulario.get('condicao')?.value;
     const categoria = this.cadastroAnunciosFormulario.get('categoria')?.value;
     const descricao = this.cadastroAnunciosFormulario.get('descricao')?.value;
-    const imagem = this.imagem;
+    const imagemFile = this.imagemFile;
 
-    console.log(imagem);
+    console.log(imagemFile);
 
     //const imagem = this.imagem ?? new File([], 'gambiarra');
 
-    if (imagem) {
+    if (imagemFile) {
       this.cadastroAnunciosService
-        .insere(isbn, nomeLivro, autor, condicao, categoria, descricao, imagem)
+        .insere(isbn, nomeLivro, autor, condicao, categoria, descricao, imagemFile)
         .subscribe(() => {
           alert('Livro cadastrado com sucesso');
           this.router.navigateByUrl('/anuncios');

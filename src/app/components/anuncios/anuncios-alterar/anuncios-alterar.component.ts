@@ -58,8 +58,8 @@ export class AnunciosAlterarComponent {
         isbn: [anuncio.isbn, Validators.pattern(/^[0-9-]+$/)],
         nomeLivro: [anuncio.nomeLivro, [Validators.required]],
         autor: [anuncio.autor.nomeAutor],
-        condicao: [anuncio.condicao.nomeCondicao, [Validators.required]],
-        categoria: [anuncio.categoria.nomeCategoria, [Validators.required]],
+        condicao: [anuncio.condicao, [Validators.required]],
+        categoria: [anuncio.categoria, [Validators.required]],
         descricao: [anuncio.descricao],
       });
     });

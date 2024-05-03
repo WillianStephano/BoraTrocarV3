@@ -13,6 +13,7 @@ import { Meta } from '@angular/platform-browser';
 })
 export class AnunciosComponent {
   anuncios$: Observable<Anuncio[]>;
+  imagemURL: any | null = null;
 
   constructor(
     private anunciosService: AnunciosService,
