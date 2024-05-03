@@ -57,7 +57,7 @@ export class AnunciosAlterarComponent {
       this.aleteraAnunciosFormulario = this.formBuilder.group({
         isbn: [anuncio.isbn, Validators.pattern(/^[0-9-]+$/)],
         nomeLivro: [anuncio.nomeLivro, [Validators.required]],
-        autor: [anuncio.autor.nomeAutor],
+        autor: [anuncio.autor],
         condicao: [anuncio.condicao, [Validators.required]],
         categoria: [anuncio.categoria, [Validators.required]],
         descricao: [anuncio.descricao],

@@ -3,9 +3,7 @@ export interface Anuncio {
   isbn: string;
   nomeLivro: string;
   imagemBlob: Uint8Array;
-  autor: {
-    nomeAutor: string;
-  };
+  autor: string;
   categoria: string;
   condicao: string;
   descricao: string;
