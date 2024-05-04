@@ -21,7 +21,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AnuncioAbertoComponent } from './anuncio-aberto/anuncio-aberto.component';
 import { AnunciosAlterarComponent } from './anuncios-alterar/anuncios-alterar.component';
-import { BarraPesquisaComponent } from './barra-pesquisa/barra-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { BarraPesquisaComponent } from './barra-pesquisa/barra-pesquisa.componen
     AnunciosCadastroComponent,
     AnuncioAbertoComponent,
     AnunciosAlterarComponent,
-    BarraPesquisaComponent,
   ],
   imports: [
     CommonModule,

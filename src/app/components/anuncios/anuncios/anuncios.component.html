@@ -1,12 +1,30 @@
-<section class="barra-pesquisa">
-  <app-barra-pesquisa />
-</section>
-<!-- O ngIf é tipo um If ternario, e caso essa caralha nao puxe as info do observable ele vai rodar o tamplete "carregando" que ta la no final. -->
+<mat-form-field class="txt-pesquisa">
+  <mat-label>Pesquisar</mat-label>
+  <input matInput type="text" [(ngModel)]="txtPesquisa" />
+  <button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    *ngIf="txtPesquisa"
+    (click)="limparPesquisa()"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+  <button
+    matSuffix
+    mat-icon-button
+    aria-label="Search"
+    (click)="realizarPesquisa()"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>
+
 <div class="container" *ngIf="anuncios$ | async as anuncios; else carregando">
   <mat-card
     (click)="abrirAnuncio(anuncio.idLivro)"
     class="card"
-    *ngFor="let anuncio of anuncios$ | async"
+    *ngFor="let anuncio of anuncios"
   >
     <mat-card-header style="width: 100%">
       <mat-card-title>{{ anuncio.nomeLivro }}</mat-card-title>
@@ -27,27 +45,11 @@
       <p class="descricao"><span> Descrição:</span> {{ anuncio.descricao }}</p>
       <!-- Img de perfil -->
       <!-- <div mat-card-avatar class="img-perfil-anunciante"></div> -->
-      <p class="anunciante">
-        <span> Anunciante:</span> {{ anuncio.usuario }}
-      </p>
+      <p class="anunciante"><span> Anunciante:</span> {{ anuncio.usuario }}</p>
     </mat-card-content>
   </mat-card>
 </div>
-<!-- <mat-card-actions>
-  <button
-    class="btn-add"
-    mat-fab
-    extended
-    color="primary"
-    *ngIf="loginService.estaAutenticado()"
-    (click)="criaUmAnuncio()"
-  >
-    <mat-icon>add</mat-icon>
-    Crie um anuncio
-  </button>
-</mat-card-actions> -->
 
-<!-- Tamplate de loading enquanto aguarda os dados -->
 <ng-template #carregando>
   <div class="carregamento-postagens">
     <mat-spinner style="height: 50px"></mat-spinner>
