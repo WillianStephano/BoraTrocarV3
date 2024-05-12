@@ -9,7 +9,7 @@ import { Comentario } from '../models/Comentario';
   providedIn: 'root',
 })
 export class ComentarioService {
-  private readonly API = `http://localhost:8080`;
+  private readonly API = `http://localhost:8020`;
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
