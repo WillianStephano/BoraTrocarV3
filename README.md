@@ -30,3 +30,4 @@ Execute o comando abaixo no command prompt para executar o servidor de desenvolv
 ng serve -o
 ``` 
 O projeto sera executado em `http://localhost:4200/.
+

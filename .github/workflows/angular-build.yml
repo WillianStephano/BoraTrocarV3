@@ -1,0 +1,60 @@
+# Nome do workflow
+name: Angular CI
+
+# Definição dos eventos que acionam o workflow
+on:
+  # Executar o workflow manualmente
+  workflow_dispatch:
+  # Executar o workflow quando houver push
+  push:
+    branches:
+      # Aplicar a qualquer branch
+      - '**'
+  # Executar o workflow quando houver pull request
+  pull_request:
+    branches:
+      # Aplicar a qualquer branch
+      - '**'
+
+# Definição dos jobs que o workflow irá executar
+jobs:
+  # Nome do job
+  build:
+    # Especifica o ambiente no qual o job será executado
+    runs-on: ubuntu-latest  # Usar o sistema operacional Ubuntu mais recente
+
+    # Definição de uma estratégia de matriz para o job
+    strategy:
+      # Especifica a versão do Node.js a ser usada
+      matrix:
+        node-version: [18.x]  # Usar a versão 18.x do Node.js
+
+    # Lista de passos a serem executados pelo job
+    steps:
+      # Primeiro passo: fazer o checkout do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Segundo passo: configurar a versão do Node.js
+      - name: Use Node.js ${{ matrix.node-version }}  # Configurar a versão do Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          # Usar cache do npm para melhorar a velocidade de instalação das dependências
+          cache: 'npm'
+
+      # Terceiro passo: instalar as dependências do projeto
+      - name: Instalar dependências do projeto
+        run: npm install
+
+      # Quarto passo: instalar o Angular CLI globalmente
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      # Quinto passo: construir o projeto Angular usando a configuração de produção
+      - name: Construir o projeto Angular
+        run: ng build --configuration production
+
+      # Sexto passo: executar os testes unitários do Angular
+      - name: Executar testes unitários
+        run: ng test
