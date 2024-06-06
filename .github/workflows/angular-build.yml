@@ -1,0 +1,39 @@
+name: Angular CI
+
+on:
+  push:
+    branches:
+      - '**'  # Executar quando houver push em qualquer branch
+  pull_request:
+    branches:
+      - '**'  # Executar quando houver pull request em qualquer branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Usar o sistema operacional Ubuntu mais recente
+
+    strategy:
+      matrix:
+        node-version: [18.x]  # Usar a versão 18.x do Node.js
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}  # Configurar a versão do Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'  # Cache do npm para melhorar a velocidade de instalação
+
+      - name: Instalar dependências do projeto
+        run: npm install
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Construir o projeto Angular
+        run: ng build --configuration production
+
+      - name: Executar testes unitários
+        run: ng test
